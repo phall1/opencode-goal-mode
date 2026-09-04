@@ -1,0 +1,36 @@
+{
+  "name": "opencode-goal-mode-v2",
+  "version": "0.1.0",
+  "description": "Durable goal mode built for the current OpenCode 2 plugin API",
+  "type": "module",
+  "exports": "./src/index.js",
+  "files": [
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --test"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "goal-mode",
+    "ai-agent"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phall1/opencode-goal-mode.git"
+  },
+  "homepage": "https://github.com/phall1/opencode-goal-mode#readme",
+  "bugs": {
+    "url": "https://github.com/phall1/opencode-goal-mode/issues"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "0.0.0-beta-19059",
+    "@types/json-schema": "^7.0.15",
+    "typescript": "^5.9.2"
+  }
+}
