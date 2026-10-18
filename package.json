@@ -29,7 +29,7 @@
     "url": "https://github.com/phall1/opencode-goal-mode/issues"
   },
   "devDependencies": {
-    "@opencode-ai/plugin": "0.0.0-beta-19059",
+    "@opencode/plugin": "2.0.32",
     "@types/json-schema": "^7.0.15",
     "typescript": "^5.9.2"
   }

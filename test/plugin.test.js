@@ -17,6 +17,7 @@ function mockContext(options = {}) {
   const hooks = new Map();
   const prompts = [];
   const synthetic = [];
+  const interrupts = [];
   const registration = () => ({ dispose: async () => {} });
 
   const context = {
@@ -63,7 +64,7 @@ function mockContext(options = {}) {
         synthetic.push(input);
         return {};
       },
-      interrupt: async () => {},
+      interrupt: async (input) => { interrupts.push(input); },
     },
     event: {
       subscribe: ({ signal } = {}) => ({
@@ -76,7 +77,7 @@ function mockContext(options = {}) {
     },
   };
 
-  return { context, storage, commands, tools, hooks, prompts, synthetic };
+  return { context, storage, commands, tools, hooks, prompts, synthetic, interrupts };
 }
 
 test("parses the complete /goal command surface", () => {
@@ -129,6 +130,23 @@ test("registers /goal through the current add-only command API", async () => {
   assert.equal(stored.status, "active");
 
   await cleanup?.();
+});
+
+test("pause interrupts with the stable V2 session payload", async () => {
+  const mock = mockContext({ auto_continue: false });
+  mock.storage.set("goal/ses_pause", createGoalState("verify compatibility"));
+  const cleanup = await plugin.setup(/** @type {any} */ (mock.context));
+  try {
+    await mock.commands[0].execute({
+      sessionID: "ses_pause",
+      prompt: { text: "pause" },
+      delivery: "steer",
+    });
+    assert.deepEqual(mock.interrupts, [{ sessionID: "ses_pause" }]);
+    assert.equal(mock.storage.get("goal/ses_pause").status, "paused");
+  } finally {
+    await cleanup?.();
+  }
 });
 
 test("injects the active contract and enforces exact completion IDs", async () => {

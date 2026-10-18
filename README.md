@@ -20,18 +20,18 @@ Unlike goal plugins written for OpenCode 1 or older V2 previews, this plugin reg
 
 Tested against:
 
-- OpenCode `0.0.0-beta-19059`
-- `@opencode-ai/plugin` `0.0.0-beta-19059`
+- OpenCode `2.0.32`
+- `@opencode/plugin` `2.0.32`
 
-OpenCode 2 is still beta and its plugin API can change. Releases pin the exact API version they were tested against.
+Releases pin the exact stable API version they were tested against.
 
 ## Install
 
 Install the current branch globally:
 
 ```sh
-opencode2 plugin add github:phall1/opencode-goal-mode#main
-opencode2 service restart
+opencode plugin add github:phall1/opencode-goal-mode#main
+opencode service restart
 ```
 
 For reproducible configuration, pin a full commit hash in `~/.config/opencode/opencode.jsonc`:

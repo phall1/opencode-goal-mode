@@ -1,8 +1,8 @@
 // @ts-check
 
-/** @typedef {import("@opencode-ai/plugin").Plugin.Context} PluginContext */
-/** @typedef {import("@opencode-ai/plugin/promise/command").CommandInvocation} CommandInvocation */
-/** @typedef {import("@opencode-ai/plugin/promise/registration").Registration} Registration */
+/** @typedef {import("@opencode/plugin").Plugin.Context} PluginContext */
+/** @typedef {import("@opencode/plugin/promise/command").CommandInvocation} CommandInvocation */
+/** @typedef {import("@opencode/plugin/promise/registration").Registration} Registration */
 
 const STATE_VERSION = 1;
 const DEFAULT_MAX_AUTOMATIC_TURNS = 25;
@@ -339,7 +339,7 @@ export function createGoalModePlugin(ctx) {
         if (current.status !== "active") throw new Error(`Goal is ${current.status}, not active.`);
         return writeGoal(sessionID, { ...current, status: "paused", stopReason: "paused by user", updatedAt: now() });
       });
-      await ctx.session.interrupt({ sessionID, continue: false }).catch(() => undefined);
+      await ctx.session.interrupt({ sessionID }).catch(() => undefined);
       await notify(sessionID, formatGoalStatus(goal));
       return;
     }
