@@ -1,6 +1,6 @@
 {
   "name": "opencode-goal-mode-v2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Durable goal mode built for the current OpenCode 2 plugin API",
   "type": "module",
   "exports": "./src/index.js",
@@ -31,6 +31,6 @@
   "devDependencies": {
     "@opencode/plugin": "2.0.32",
     "@types/json-schema": "^7.0.15",
-    "typescript": "^5.9.2"
+    "typescript": "^7.0.2"
   }
 }
