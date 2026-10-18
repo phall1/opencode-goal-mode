@@ -24,6 +24,8 @@ Tested against:
 - `@opencode/plugin` `2.0.32`
 
 Releases pin the exact stable API version they were tested against.
+Release `0.1.1` also typechecks with TypeScript `7.0.2`; the compiler and SDK
+remain development-only dependencies, with no install/build lifecycle hooks.
 
 ## Install
 
